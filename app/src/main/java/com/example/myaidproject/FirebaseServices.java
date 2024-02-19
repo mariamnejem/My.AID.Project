@@ -17,10 +17,12 @@ public class FirebaseServices {
     }
 
     public FirebaseAuth getAuth() {
+
         return auth;
     }
 
     public FirebaseFirestore getFire() {
+
         return fire;
     }
 
