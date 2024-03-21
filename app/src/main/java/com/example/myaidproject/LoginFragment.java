@@ -25,7 +25,7 @@ import com.google.firebase.auth.AuthResult;
 public class LoginFragment extends Fragment {
 
     private EditText etUsername, etPassword;
-    private Button btnSignup, btnLogin;
+    private Button btnSignup, btnLogin, btnForgot;
     private FirebaseServices fbs;
 
     // TODO: Rename parameter arguments, choose names that match
@@ -83,6 +83,8 @@ public class LoginFragment extends Fragment {
         etPassword= getView().findViewById(R.id.etPasswordLogin);
         btnSignup= getView().findViewById(R.id.btnSignupLogin);
         btnLogin= getView().findViewById(R.id.btnLoginLogin);
+        btnForgot = getView().findViewById(R.id.btnForgotpassLogin);
+
         btnLogin.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
@@ -97,11 +99,19 @@ public class LoginFragment extends Fragment {
                 fbs.getAuth().signInWithEmailAndPassword(username, password).addOnSuccessListener(new OnSuccessListener<AuthResult>() {
                     @Override
                     public void onSuccess(AuthResult authResult) {
+                        gotoAddDataFragment();
                         Toast.makeText(getActivity(), "success", Toast.LENGTH_SHORT).show();
+                    }
+
+                    private void gotoAddDataFragment() {
+                        FragmentTransaction ft = getActivity().getSupportFragmentManager().beginTransaction();
+                        ft.replace(R.id.frameLayout, new AddDataFragment());
+                        ft.commit();
                     }
                 }).addOnFailureListener(new OnFailureListener() {
                     @Override
                     public void onFailure(@NonNull Exception e) {
+                        Toast.makeText(getActivity(), " failed to login! check your user or password ", Toast.LENGTH_SHORT).show();
 
                     }
                 });
@@ -112,11 +122,19 @@ public class LoginFragment extends Fragment {
             @Override
             public void onClick(View v) {
                 FragmentTransaction ft=getActivity().getSupportFragmentManager().beginTransaction();
-                ft.replace(R.id.frameLayoutMain, new SignupFragment());
+                ft.replace(R.id.frameLayout, new SignupFragment());
                 ft.commit();
             }
         });
 
+        btnForgot.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                FragmentTransaction ft=getActivity().getSupportFragmentManager().beginTransaction();
+                ft.replace(R.id.frameLayout, new Fragment_ForgotPassword());
+                ft.commit();
+            }
+        });
 
     }
 }
