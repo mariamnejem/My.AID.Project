@@ -10,32 +10,89 @@
         android:layout_width="match_parent"
         android:layout_height="match_parent">
 
-        <EditText
-            android:id="@+id/etNameAddDataFragment"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:ems="10"
-            android:hint="Name..."
-            android:inputType="text"
+        <Button
+            android:id="@+id/button1"
+            android:layout_width="383dp"
+            android:layout_height="65dp"
+            android:background="@drawable/btn1"
+            android:text="إنعاش"
+            android:textSize="24sp"
             app:layout_constraintBottom_toBottomOf="parent"
             app:layout_constraintEnd_toEndOf="parent"
-            app:layout_constraintHorizontal_bias="0.86"
+            app:layout_constraintHorizontal_bias="0.428"
             app:layout_constraintStart_toStartOf="parent"
             app:layout_constraintTop_toTopOf="parent"
-            app:layout_constraintVertical_bias="0.036" />
+            app:layout_constraintVertical_bias="0.088" />
 
-        <EditText
-            android:id="@+id/etDescriptionAddDataFragment"
-            android:layout_width="332dp"
-            android:layout_height="61dp"
-            android:ems="10"
-            android:gravity="start|top"
-            android:inputType="textMultiLine"
+        <Button
+            android:id="@+id/button2"
+            android:layout_width="383dp"
+            android:layout_height="65dp"
+            android:background="@drawable/btn1"
+            android:text="اختناق"
+            android:textSize="24sp"
             app:layout_constraintBottom_toBottomOf="parent"
             app:layout_constraintEnd_toEndOf="parent"
-            app:layout_constraintHorizontal_bias="0.658"
+            app:layout_constraintHorizontal_bias="0.428"
             app:layout_constraintStart_toStartOf="parent"
             app:layout_constraintTop_toTopOf="parent"
-            app:layout_constraintVertical_bias="0.167" />
+            app:layout_constraintVertical_bias="0.229" />
+
+        <Button
+            android:id="@+id/button3"
+            android:layout_width="383dp"
+            android:layout_height="65dp"
+            android:background="@drawable/btn1"
+            android:text="الجلطة الدماغية"
+            android:textSize="24sp"
+            app:layout_constraintBottom_toBottomOf="parent"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintHorizontal_bias="0.428"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toTopOf="parent"
+            app:layout_constraintVertical_bias="0.803" />
+
+        <Button
+            android:id="@+id/button4"
+            android:layout_width="383dp"
+            android:layout_height="65dp"
+            android:background="@drawable/btn1"
+            android:text="الجلطة القلبية"
+            android:textSize="24sp"
+            app:layout_constraintBottom_toBottomOf="parent"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintHorizontal_bias="0.428"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toTopOf="parent"
+            app:layout_constraintVertical_bias="0.663" />
+
+        <Button
+            android:id="@+id/button5"
+            android:layout_width="383dp"
+            android:layout_height="65dp"
+            android:background="@drawable/btn1"
+            android:text="الصرع"
+            android:textSize="24sp"
+            app:layout_constraintBottom_toBottomOf="parent"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintHorizontal_bias="0.428"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toTopOf="parent"
+            app:layout_constraintVertical_bias="0.515" />
+
+        <Button
+            android:id="@+id/button6"
+            android:layout_width="383dp"
+            android:layout_height="65dp"
+            android:background="@drawable/btn1"
+            android:text="الكسور"
+            android:textSize="24sp"
+            app:layout_constraintBottom_toBottomOf="parent"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintHorizontal_bias="0.428"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toTopOf="parent"
+            app:layout_constraintVertical_bias="0.373" />
+
     </androidx.constraintlayout.widget.ConstraintLayout>
 </FrameLayout>
