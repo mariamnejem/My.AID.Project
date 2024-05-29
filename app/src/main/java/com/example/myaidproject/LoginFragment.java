@@ -105,7 +105,7 @@ public class LoginFragment extends Fragment {
 
                     private void gotoAddDataFragment() {
                         FragmentTransaction ft = getActivity().getSupportFragmentManager().beginTransaction();
-                        ft.replace(R.id.frameLayout, new MainPage());
+                        ft.replace(R.id.frameLayout, new AddCourseFragment());
                         ft.commit();
                     }
                 }).addOnFailureListener(new OnFailureListener() {

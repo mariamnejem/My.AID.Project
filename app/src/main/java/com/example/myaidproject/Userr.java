@@ -1,0 +1,101 @@
+package com.example.myaidproject;
+
+import android.os.Parcel;
+
+import java.util.ArrayList;
+
+public class Userr {
+
+    private String firstName;
+    private String lastName;
+    private String userName;
+    private String Address;
+    private  String phoneNumber;
+    private String photo;
+    private ArrayList<String> favorites;
+    // Public no-argument constructor
+    public Userr() {
+        // Default constructor
+    }
+    public Userr(String firstname, String lastname, String phonenumber, String imageURL, String password, String address, String username) {
+    }
+    public Userr(String firstName, String lastName, String username, String phone, String address, String photo) {
+        this.firstName = firstName;
+        this.lastName = lastName;
+        this.userName = username;
+        this.photo = photo;
+        this.favorites = new ArrayList<>();
+    }
+
+    public Userr(Parcel in) {
+    }
+    public String getFirstName() {
+        return firstName;
+    }
+
+    public void setFirstName(String firstName) {
+        this.firstName = firstName;
+    }
+
+    public String getLastName() {
+        return lastName;
+    }
+
+    public void setLastName(String lastName) {
+        this.lastName = lastName;
+    }
+
+    public String getUserName() {
+        return userName;
+    }
+
+    public void setUserName(String userName) {
+        this.userName = userName;
+    }
+
+    public String getAddress() {
+        return Address;
+    }
+
+    public void setAddress(String address) {
+        Address = address;
+    }
+
+    public String getPhoneNumber() {
+        return phoneNumber;
+    }
+
+    public void setPhoneNumber(String phoneNumber) {
+        this.phoneNumber = phoneNumber;
+    }
+
+    public String getPhoto() {
+        return photo;
+    }
+
+    public void setPhoto(String photo) {
+        this.photo = photo;
+    }
+
+    public ArrayList<String> getFavorites() {
+        return favorites;
+    }
+
+    public void setFavorites(ArrayList<String> favorites) {
+        this.favorites = favorites;
+    }
+
+    @Override
+    public String toString() {
+        return "User{" +
+                "firstName='" + firstName + '\'' +
+                ", lastName='" + lastName + '\'' +
+                ", userName='" + userName + '\'' +
+                ", Address='" + Address + '\'' +
+                ", phoneNumber='" + phoneNumber + '\'' +
+                ", photo='" + photo + '\'' +
+                ", favorites=" + favorites +
+                '}';
+    }
+
+}
