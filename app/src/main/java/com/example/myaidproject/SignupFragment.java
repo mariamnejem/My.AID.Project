@@ -4,6 +4,7 @@ import android.os.Bundle;
 
 import androidx.annotation.NonNull;
 import androidx.fragment.app.Fragment;
+import androidx.fragment.app.FragmentTransaction;
 
 import android.view.LayoutInflater;
 import android.view.View;
@@ -98,6 +99,7 @@ public class SignupFragment extends Fragment {
                     @Override
                     public void onSuccess(AuthResult authResult) {
                         Toast.makeText(getActivity(), "success", Toast.LENGTH_SHORT).show();
+                        gotoCourseListFragment();
                     }
                 }).addOnFailureListener(new OnFailureListener() {
                     @Override
@@ -105,9 +107,15 @@ public class SignupFragment extends Fragment {
                         Toast.makeText(getActivity(), "fail", Toast.LENGTH_SHORT).show();
                     }
                 });
-
             }
         });
-
     }
+
+    private void gotoCourseListFragment() {
+        FragmentTransaction ft=getActivity().getSupportFragmentManager().beginTransaction();
+        ft.replace(R.id.frameLayout,new CourseListFragment());
+        //ft.addToBackStack(null);
+        ft.commit();
+    }
+
 }

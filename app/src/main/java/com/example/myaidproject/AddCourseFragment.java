@@ -125,7 +125,7 @@ public class AddCourseFragment extends Fragment {
         }
         Course cors;
         if (fbs.getSelectedImageURL() == null){
-            cors= new Course(corsTitle,info,photo);
+            cors= new Course(corsTitle,info,"");
         }
         else {
             cors= new Course(corsTitle,info,fbs.getSelectedImageURL().toString());
@@ -167,6 +167,7 @@ public class AddCourseFragment extends Fragment {
     public void gotoCoursesList(){
         FragmentTransaction ft= getActivity().getSupportFragmentManager().beginTransaction();
         ft.replace(R.id.frameLayout,new CourseListFragment());
+        ft.addToBackStack(null);
         ft.commit();
     }
     public void toBigImg(View view ){

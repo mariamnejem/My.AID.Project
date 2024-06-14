@@ -1,6 +1,5 @@
 package com.example.myaidproject;
 
-import android.net.Uri;
 import android.os.Bundle;
 
 import androidx.annotation.NonNull;
@@ -18,7 +17,6 @@ import android.widget.ImageView;
 import android.widget.SearchView;
 import android.widget.Toast;
 
-import com.android.car.ui.recyclerview.CarUiListItemAdapter;
 import com.google.android.gms.tasks.OnCompleteListener;
 import com.google.android.gms.tasks.Task;
 import com.google.firebase.firestore.QueryDocumentSnapshot;
@@ -34,14 +32,14 @@ import java.util.ArrayList;
 public class CourseListFragment extends Fragment {
 
     private RecyclerView recyclerView;
-
     private ImageView ivProfile;
     private FirebaseServices fbs;
     private CourseAdapter myAdapter;
     private ArrayList<Course> list , filteredList;
+    private SearchView srchView;
 
 
-    // TODO: Rename parameter arguments, choose names that match
+    //TODO: Rename parameter arguments, choose names that match
     // the fragment initialization parameters, e.g. ARG_ITEM_NUMBER
     private static final String ARG_PARAM1 = "param1";
     private static final String ARG_PARAM2 = "param2";
@@ -98,26 +96,87 @@ public class CourseListFragment extends Fragment {
         myAdapter = new CourseAdapter(getActivity(), list);
         recyclerView.setAdapter(myAdapter);
         filteredList = new ArrayList<>();
+        list = getCourses();
 
+/*
+        myAdapter.setOnItemClickListener(new CourseAdapter.OnItemClickListener() {
 
-     myAdapter.setOnItemClickListener(new CourseAdapter.OnItemClickListener(){
-         @Override
-         public void onItemClick(int position) {
+            @Override
+            public void onItemClick(int position) {
+                // Handle item click here
+                String selectedItem = list.get(position).getName();
+                Toast.makeText(getActivity(), "Clicked: " + selectedItem, Toast.LENGTH_SHORT).show();
+                Bundle args = new Bundle();
+                args.putParcelable("course", list.get(position)); // or use Parcelable for better performance
+                CourseDetailsFragment cd = new CourseDetailsFragment();
+                cd.setArguments(args);
+                FragmentTransaction ft=getActivity().getSupportFragmentManager().beginTransaction();
+                ft.replace(R.id.frameLayout,cd);
+                ft.commit();
+            }
+        });*/
+        srchView = getView().findViewById(R.id.srchListFragment);
+        srchView.setOnQueryTextListener(new SearchView.OnQueryTextListener() {
+            @Override
+            public boolean onQueryTextSubmit(String query) {
+                applyFilter(query);
+                return false;
+            }
 
-             // Handle item click here
-             String selectedItem = list.get(position).getName();
-             Toast.makeText(getActivity(), "Clicked: " + selectedItem, Toast.LENGTH_SHORT).show();
-             Bundle args = new Bundle();
-             args.putParcelable("course", list.get(position)); // or use Parcelable for better performance
-             CourseDetailsFragment cd = new CourseDetailsFragment();
-             cd.setArguments(args);
-             FragmentTransaction ft=getActivity().getSupportFragmentManager().beginTransaction();
-             ft.replace(R.id.frameLayout,cd);
-             ft.commit();
-         }
-     });
+            @Override
+            public boolean onQueryTextChange(String newText) {
+                //applyFilter(newText);
+                return false;
+            }
+        });
     }
 
+    private void applyFilter(String query) {
+        // TODO: add onBackspace - old and new query
+        if (query.trim().isEmpty())
+        {
+            myAdapter = new CourseAdapter(getContext(), list);
+            recyclerView.setAdapter(myAdapter);
+            //MealAdapter.notifyDataSetChanged();
+            return;
+        }
+        filteredList.clear();
+        for(Course course :  list)
+        {
+            if (course.getName().toLowerCase().contains(query.toLowerCase()) ||
+                    course.getDescription().toLowerCase().contains(query.toLowerCase()) ||
+                    course.getPhoto().toLowerCase().contains((query.toLowerCase())))
+            {
+                filteredList.add(course);
+            }
+        }
+        if (filteredList.size() == 0)
+        {
+            showNoDataDialogue();
+            return;
+        }
+        myAdapter = new CourseAdapter(getContext(), filteredList);
+        recyclerView.setAdapter(myAdapter);
+
+
+/*
+        myAdapter.setOnItemClickListener(new CourseAdapter.OnItemClickListener() {
+            @Override
+            public void onItemClick(int position) {*/
+                /*
+                // Handle item click here
+                String selectedItem = filteredList.get(position).getNameMeal();
+                Toast.makeText(getActivity(), "Clicked: " + selectedItem, Toast.LENGTH_SHORT).show();
+                Bundle args = new Bundle();
+                args.putParcelable(meal", filteredList.get(position)); // or use Parcelable for better performance
+                MealDetailsFragment cd = new MealDetailsFragment();
+                cd.setArguments(args);
+                FragmentTransaction ft=getActivity().getSupportFragmentManager().beginTransaction();
+                ft.replace(R.id.frameLayout,cd);
+                ft.commit();
+            }
+        });*/
+    }
     private void showNoDataDialogue() {
         AlertDialog.Builder builder = new AlertDialog.Builder(getContext());
         builder.setTitle("No Results");
@@ -133,11 +192,12 @@ public class CourseListFragment extends Fragment {
     public void gotoAddCourseFragment() {
         FragmentTransaction ft = getActivity().getSupportFragmentManager().beginTransaction();
         ft.replace(R.id.frameLayout,new AddCourseFragment());
+        ft.addToBackStack(null);
         ft.commit();
     }
 
-    public ArrayList<Course> getCars() {
-        ArrayList<Course> cars = new ArrayList<>();
+    public ArrayList<Course> getCourses() {
+        ArrayList<Course> list = new ArrayList<>();
         try {
             list.clear();
             fbs.getFire().collection("courses")
@@ -154,7 +214,7 @@ public class CourseListFragment extends Fragment {
                                 recyclerView.setAdapter(adapter);
                                 //addUserToCompany(companies, user);
                             } else {
-                                //Log.e("AllRestActivity: readData()", "Error getting documents.", task.getException());
+                                Log.e("AllRestActivity: readData()", "Error getting documents.", task.getException());
                             }
                         }
                     });
@@ -167,5 +227,4 @@ public class CourseListFragment extends Fragment {
         return list;
 
     }
-
 }

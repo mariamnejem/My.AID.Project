@@ -4,6 +4,7 @@ import android.os.Bundle;
 
 import androidx.annotation.NonNull;
 import androidx.fragment.app.Fragment;
+import androidx.fragment.app.FragmentTransaction;
 
 import android.view.LayoutInflater;
 import android.view.View;
@@ -93,10 +94,17 @@ public class Fragment_ForgotPassword extends Fragment {
                     public void onFailure(@NonNull Exception e) {
                         Toast.makeText(getActivity(), "failed. check the email address you entered", Toast.LENGTH_SHORT).show();
                     }
+                    public void gotoLoginFragment() {
+                        FragmentTransaction ft=getActivity().getSupportFragmentManager().beginTransaction();
+                        ft.replace(R.id.frameLayout,new LoginFragment());
+                        ft.addToBackStack(null);
+                        ft.commit();
+                    }
                 });
-
 
             }
         });
+
     }
+
 }

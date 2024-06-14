@@ -4,6 +4,7 @@ import android.os.Bundle;
 
 import androidx.collection.CircularArray;
 import androidx.fragment.app.Fragment;
+import androidx.fragment.app.FragmentTransaction;
 
 import android.view.LayoutInflater;
 import android.view.View;
@@ -25,7 +26,7 @@ public class CourseDetailsFragment extends Fragment {
  private TextView tvTitle, info;
  private ImageView ivCoursePhoto;
  private Course course;
- private Button done;
+ private Button btnBackDetails;
  private boolean isEnlarged = false;
 
 
@@ -79,9 +80,16 @@ public class CourseDetailsFragment extends Fragment {
     public void onStart(){
         super.onStart();
         init();
-        ImageView ivCoursePhoto = getView().findViewById(R.id.ivPicAddData);
 
-        ivCoursePhoto.setOnClickListener(new View.OnClickListener() {
+    }
+
+    public void init(){
+        fbs= FirebaseServices.getInstance();
+        tvTitle= getView().findViewById(R.id.tvTitleDetails);
+        info= getView().findViewById(R.id.tvInfoDetails);
+        ivCoursePhoto=getView().findViewById(R.id.ivPhotoDetails);
+
+        /*ivCoursePhoto.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
                 ViewGroup.LayoutParams layoutParams = ivCoursePhoto.getLayoutParams();
@@ -95,28 +103,28 @@ public class CourseDetailsFragment extends Fragment {
                 // נשנה את המצב הנוכחי של התמונה
                 isEnlarged = !isEnlarged;
             }
-        });
-    }
-
-
-    public void init(){
-        fbs= FirebaseServices.getInstance();
-        tvTitle= getView().findViewById(R.id.tvTitleDetails);
-        info= getView().findViewById(R.id.tvInfoDetails);
-        //ivCoursePhoto=getView().findViewById(R.id.tv);
-
+        });*/
         Bundle args = getArguments();
         if (args != null){
-            Course course = args.getParcelable("car");
+            Course course = args.getParcelable("course");
             if (course != null) {
                 tvTitle.setText(course.getName());
                 info.setText(course.getDescription());
                 if (course.getPhoto() == null || course.getPhoto().isEmpty()){
-                    Picasso.get().load(R.drawable.inash).into(ivCoursePhoto);
+                    Picasso.get().load(R.drawable.addimage).into(ivCoursePhoto);
                 }
                 else {
                     Picasso.get().load(course.getPhoto()).into(ivCoursePhoto);
                 }
+               /* btnBackDetails.setOnClickListener(new View.OnClickListener() {
+                    @Override
+                    public void onClick(View v) {
+                        FragmentTransaction ft=getActivity().getSupportFragmentManager().beginTransaction();
+                        ft.replace(R.id.frameLayout, new CourseListFragment());
+                        ft.addToBackStack(null);
+                        ft.commit();
+                    }
+                });*/
             }
         }
     }

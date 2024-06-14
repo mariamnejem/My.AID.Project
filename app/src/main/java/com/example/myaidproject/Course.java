@@ -10,7 +10,10 @@ public class Course implements Parcelable {
     private String description;
     private String photo;
 
+    public Course()
+    {
 
+    }
     public Course(String name, String description, String photo) {
         this.name = name;
         this.description = description;

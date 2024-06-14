@@ -1,6 +1,6 @@
 package com.example.myaidproject;
 
 public interface UserCallback {
-    void onUserLoaded(Userr user);
+    void onUserLoaded(User user);
 
 }

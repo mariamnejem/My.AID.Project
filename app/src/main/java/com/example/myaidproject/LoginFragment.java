@@ -106,6 +106,7 @@ public class LoginFragment extends Fragment {
                     private void gotoAddDataFragment() {
                         FragmentTransaction ft = getActivity().getSupportFragmentManager().beginTransaction();
                         ft.replace(R.id.frameLayout, new AddCourseFragment());
+                        ft.addToBackStack(null);
                         ft.commit();
                     }
                 }).addOnFailureListener(new OnFailureListener() {
@@ -123,6 +124,7 @@ public class LoginFragment extends Fragment {
             public void onClick(View v) {
                 FragmentTransaction ft=getActivity().getSupportFragmentManager().beginTransaction();
                 ft.replace(R.id.frameLayout, new SignupFragment());
+                ft.addToBackStack(null);
                 ft.commit();
             }
         });
@@ -132,6 +134,7 @@ public class LoginFragment extends Fragment {
             public void onClick(View v) {
                 FragmentTransaction ft=getActivity().getSupportFragmentManager().beginTransaction();
                 ft.replace(R.id.frameLayout, new Fragment_ForgotPassword());
+                ft.addToBackStack(null);
                 ft.commit();
             }
         });

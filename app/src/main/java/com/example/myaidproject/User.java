@@ -4,7 +4,7 @@ import android.os.Parcel;
 
 import java.util.ArrayList;
 
-public class Userr {
+public class User {
 
     private String firstName;
     private String lastName;
@@ -14,12 +14,12 @@ public class Userr {
     private String photo;
     private ArrayList<String> favorites;
     // Public no-argument constructor
-    public Userr() {
+    public User() {
         // Default constructor
     }
-    public Userr(String firstname, String lastname, String phonenumber, String imageURL, String password, String address, String username) {
+    public User(String firstname, String lastname, String phonenumber, String imageURL, String password, String address, String username) {
     }
-    public Userr(String firstName, String lastName, String username, String phone, String address, String photo) {
+    public User(String firstName, String lastName, String username, String phone, String address, String photo) {
         this.firstName = firstName;
         this.lastName = lastName;
         this.userName = username;
@@ -27,7 +27,7 @@ public class Userr {
         this.favorites = new ArrayList<>();
     }
 
-    public Userr(Parcel in) {
+    public User(Parcel in) {
     }
     public String getFirstName() {
         return firstName;
