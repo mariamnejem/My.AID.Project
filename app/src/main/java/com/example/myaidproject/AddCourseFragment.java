@@ -8,6 +8,7 @@ import androidx.annotation.NonNull;
 import androidx.fragment.app.Fragment;
 import androidx.fragment.app.FragmentTransaction;
 
+import android.os.Debug;
 import android.provider.MediaStore;
 import android.util.Log;
 import android.view.LayoutInflater;
@@ -103,8 +104,10 @@ public class AddCourseFragment extends Fragment {
          @Override
          public void onClick(View v) {
              addToFirestore();
+             gotoCoursesList();
+
          }
-     });
+         });
         ivPicAddData.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) { openGallery();}
@@ -167,7 +170,6 @@ public class AddCourseFragment extends Fragment {
     public void gotoCoursesList(){
         FragmentTransaction ft= getActivity().getSupportFragmentManager().beginTransaction();
         ft.replace(R.id.frameLayout,new CourseListFragment());
-        ft.addToBackStack(null);
         ft.commit();
     }
     public void toBigImg(View view ){

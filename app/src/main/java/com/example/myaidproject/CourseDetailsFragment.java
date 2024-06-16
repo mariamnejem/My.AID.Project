@@ -88,6 +88,8 @@ public class CourseDetailsFragment extends Fragment {
         tvTitle= getView().findViewById(R.id.tvTitleDetails);
         info= getView().findViewById(R.id.tvInfoDetails);
         ivCoursePhoto=getView().findViewById(R.id.ivPhotoDetails);
+        btnBackDetails= getView().findViewById(R.id.btnBackDetails);
+
 
         /*ivCoursePhoto.setOnClickListener(new View.OnClickListener() {
             @Override
@@ -116,15 +118,14 @@ public class CourseDetailsFragment extends Fragment {
                 else {
                     Picasso.get().load(course.getPhoto()).into(ivCoursePhoto);
                 }
-               /* btnBackDetails.setOnClickListener(new View.OnClickListener() {
+                btnBackDetails.setOnClickListener(new View.OnClickListener() {
                     @Override
                     public void onClick(View v) {
                         FragmentTransaction ft=getActivity().getSupportFragmentManager().beginTransaction();
                         ft.replace(R.id.frameLayout, new CourseListFragment());
-                        ft.addToBackStack(null);
                         ft.commit();
                     }
-                });*/
+                });
             }
         }
     }

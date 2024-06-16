@@ -99,7 +99,7 @@ public class FirebaseServices {
     }
 
     public Uri getSelectedImageURL() { return selectedImageURL; }
-    public void setSelectedImageURL(Uri setSelectedImage) { this.selectedImageURL = selectedImageURL; }
+    public void setSelectedImageURL(Uri setSelectedImage) { this.selectedImageURL = setSelectedImage; }
 
    /* public Object getSelectedImageURL() {
         return null;

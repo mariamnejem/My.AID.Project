@@ -8,6 +8,7 @@ import android.os.Bundle;
 public class  MainActivity extends AppCompatActivity {
 
     private FirebaseServices fbs;
+
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
@@ -19,6 +20,7 @@ public class  MainActivity extends AppCompatActivity {
           } else
             gotoCoursesList();
     }
+
 
     private void gotoLoginFragment() {
         FragmentTransaction ft=getSupportFragmentManager().beginTransaction();
@@ -34,4 +36,5 @@ public class  MainActivity extends AppCompatActivity {
 
         ft.commit();
     }
+
 }

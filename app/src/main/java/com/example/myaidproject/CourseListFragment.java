@@ -13,6 +13,7 @@ import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
+import android.widget.Button;
 import android.widget.ImageView;
 import android.widget.SearchView;
 import android.widget.Toast;
@@ -37,6 +38,7 @@ public class CourseListFragment extends Fragment {
     private CourseAdapter myAdapter;
     private ArrayList<Course> list , filteredList;
     private SearchView srchView;
+    private Button btnAddDataList, btnLogoutList;
 
 
     //TODO: Rename parameter arguments, choose names that match
@@ -97,8 +99,8 @@ public class CourseListFragment extends Fragment {
         recyclerView.setAdapter(myAdapter);
         filteredList = new ArrayList<>();
         list = getCourses();
+        btnAddDataList= getView().findViewById(R.id.btnAddDataList);
 
-/*
         myAdapter.setOnItemClickListener(new CourseAdapter.OnItemClickListener() {
 
             @Override
@@ -114,7 +116,7 @@ public class CourseListFragment extends Fragment {
                 ft.replace(R.id.frameLayout,cd);
                 ft.commit();
             }
-        });*/
+        });
         srchView = getView().findViewById(R.id.srchListFragment);
         srchView.setOnQueryTextListener(new SearchView.OnQueryTextListener() {
             @Override
@@ -129,6 +131,26 @@ public class CourseListFragment extends Fragment {
                 return false;
             }
         });
+
+        btnAddDataList.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                FragmentTransaction ft=getActivity().getSupportFragmentManager().beginTransaction();
+                ft.replace(R.id.frameLayout, new AddCourseFragment());
+                ft.addToBackStack(null);
+                ft.commit();
+            }
+        });
+
+        btnLogoutList.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                FragmentTransaction ft=getActivity().getSupportFragmentManager().beginTransaction();
+                ft.replace(R.id.frameLayout, new LoginFragment());
+                ft.addToBackStack(null);
+                ft.commit();
+            }
+        });
     }
 
     private void applyFilter(String query) {
@@ -137,7 +159,6 @@ public class CourseListFragment extends Fragment {
         {
             myAdapter = new CourseAdapter(getContext(), list);
             recyclerView.setAdapter(myAdapter);
-            //MealAdapter.notifyDataSetChanged();
             return;
         }
         filteredList.clear();
@@ -192,7 +213,7 @@ public class CourseListFragment extends Fragment {
     public void gotoAddCourseFragment() {
         FragmentTransaction ft = getActivity().getSupportFragmentManager().beginTransaction();
         ft.replace(R.id.frameLayout,new AddCourseFragment());
-        ft.addToBackStack(null);
+        //ft.addToBackStack(null);
         ft.commit();
     }
 

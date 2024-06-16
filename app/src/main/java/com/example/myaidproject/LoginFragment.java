@@ -99,16 +99,16 @@ public class LoginFragment extends Fragment {
                 fbs.getAuth().signInWithEmailAndPassword(username, password).addOnSuccessListener(new OnSuccessListener<AuthResult>() {
                     @Override
                     public void onSuccess(AuthResult authResult) {
-                        gotoAddDataFragment();
+                        gotoCourseListFragment();
                         Toast.makeText(getActivity(), "success", Toast.LENGTH_SHORT).show();
                     }
 
-                    private void gotoAddDataFragment() {
+                    /*private void gotoACourseListFragment() {
                         FragmentTransaction ft = getActivity().getSupportFragmentManager().beginTransaction();
-                        ft.replace(R.id.frameLayout, new AddCourseFragment());
+                        ft.replace(R.id.frameLayout, new CourseListFragment());
                         ft.addToBackStack(null);
                         ft.commit();
-                    }
+                    }*/
                 }).addOnFailureListener(new OnFailureListener() {
                     @Override
                     public void onFailure(@NonNull Exception e) {
@@ -139,5 +139,12 @@ public class LoginFragment extends Fragment {
             }
         });
 
+    }
+
+    private void gotoCourseListFragment() {
+        FragmentTransaction ft = getActivity().getSupportFragmentManager().beginTransaction();
+        ft.replace(R.id.frameLayout, new CourseListFragment());
+        ft.addToBackStack(null);
+        ft.commit();
     }
 }
